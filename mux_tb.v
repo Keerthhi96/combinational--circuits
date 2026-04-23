@@ -23,14 +23,20 @@ module mux4x1_tb;
     endtask
 
     
-    task stimulus(input [3:0] din,input [1:0] sel)
+    task stimulus;
+        input [3:0] din;
+        input [1:0] sel;
     begin
         data_in = din;
         sel_in  = sel;
         #10;
     end
     endtask
-
+    endtask
+   initial begin
+    $dumpfile("dump.vcd");   // file name
+    $dumpvars(0, mux4x1_tb); // dump all signals
+  end
     
     initial begin
         $monitor("Time=%0t | data_in=%b | sel_in=%b | y_out=%b",
